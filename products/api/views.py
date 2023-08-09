@@ -38,6 +38,17 @@ class GetProductByIdView(APIView):
                     'message': 'Product not found'
                 })
 
+class GetProductsByUser(APIView):
+        
+        def get(self, request, id):
+            try:
+                products = Product.objects.filter(user_id=id)
+                serializer = CreateProductSerializer(products, many=True)
+                return Response(status=status.HTTP_201_CREATED, data=serializer.data)
+            except Exception as e:
+                return Response(status=status.HTTP_400_BAD_REQUEST, data={
+                    'message': 'Products not found'
+                })
     
 
    
