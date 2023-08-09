@@ -38,4 +38,5 @@ urlpatterns = [
     path('redocs/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     # when is an APIVIEW we import the router likes this
     path('api/', include('users.api.router')),
+    path('api/', include('products.api.router')),
 ]
