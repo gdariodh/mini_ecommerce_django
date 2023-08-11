@@ -28,5 +28,4 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User   
         # the user can only update the first_name and last_name
-        fields = ['first_name', 'last_name']        
-
+        fields = ['first_name', 'last_name']  
