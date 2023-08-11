@@ -1,12 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-# from rest_framework.permissions import IsAuthenticated
+from products.api.permissions import IsStaffOrReadOnly
 from products.models import Product
 from products.api.serializers import CreateProductSerializer, ProductSerializer
 
 # products/ 
 class ProductView(APIView):
+    permission_classes = [IsStaffOrReadOnly]
 
     def post(self, request):
         serializer = CreateProductSerializer(data=request.data)
@@ -18,13 +19,15 @@ class ProductView(APIView):
         return Response(data=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request):
-        products = Product.objects.all()
+        products = Product.objects.all().order_by('-created_at')
         serializer = CreateProductSerializer(products, many=True)
         return Response(status=status.HTTP_201_CREATED, data=serializer.data)
     
 
 # products/<int:id>
 class ProductViewById(APIView):
+        
+        permission_classes = [IsStaffOrReadOnly]
     
         def get(self, request, id):
             try:
@@ -66,9 +69,11 @@ class ProductViewById(APIView):
 # products/user/<int:id>
 class ProductViewByUser(APIView):
         
+        permission_classes = [IsStaffOrReadOnly]
+        
         def get(self, request, id):
             try:
-                products = Product.objects.filter(user_id=id)
+                products = Product.objects.filter(user_id=id).order_by('-created_at')
             except Exception as e:
                 return Response(status=status.HTTP_400_BAD_REQUEST, data={
                     'message': 'Products not found'
