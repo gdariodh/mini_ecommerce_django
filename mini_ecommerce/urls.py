@@ -39,4 +39,5 @@ urlpatterns = [
     # when is an APIVIEW we import the router likes this
     path('api/', include('users.api.router')),
     path('api/', include('products.api.router')),
+    path('api/', include('carts.api.router')),
 ]
