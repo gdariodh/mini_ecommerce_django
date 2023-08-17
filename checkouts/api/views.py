@@ -4,7 +4,6 @@ from rest_framework import status
 from checkouts.models import Checkout
 from checkouts.api.serializers import CheckoutSerializer, CheckoutSerializerSummary
 
-
 # /checkout
 class CheckoutView(APIView):
     def get(self, request):
@@ -62,22 +61,19 @@ class CheckoutViewById(APIView):
     def put(self, request, id):
         try:
             req_data = request.data
-            cart_id, user_id, shipping_address = (
-                req_data["cart"],
+            user_id, shipping_address = (
                 req_data["user"],
                 req_data["shipping_address"],
             )
 
-            amount = Checkout().calculate_amount(cart_id)
+            checkout = Checkout.objects.get(id=id)
 
             data = {
-                "amount": amount,
-                "cart": cart_id,
                 "user": user_id,
                 "shipping_address": shipping_address,
+                "cart": checkout.cart.id,
             }
 
-            checkout = Checkout.objects.get(id=id)
             serializer = CheckoutSerializer(checkout, data=data)
 
             if serializer.is_valid(raise_exception=True):

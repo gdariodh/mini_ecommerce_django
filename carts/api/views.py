@@ -12,7 +12,7 @@ class CartView(APIView):
     def get(self, request):
         try:
             carts = Cart.objects.all().order_by('-created_at')
-            serializer = CartSerializerSummary(carts, many=True)
+            serializer = CartSerializer(carts, many=True)
             return Response(status=status.HTTP_200_OK, data=serializer.data)
 
         except Exception as e:
