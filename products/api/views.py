@@ -20,7 +20,7 @@ class ProductView(APIView):
 
     def get(self, request):
         products = Product.objects.all().order_by('-created_at')
-        serializer = CreateProductSerializer(products, many=True)
+        serializer = ProductSerializer(products, many=True)
         return Response(status=status.HTTP_201_CREATED, data=serializer.data)
     
 
