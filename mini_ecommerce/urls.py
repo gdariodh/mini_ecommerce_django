@@ -21,9 +21,9 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Blog API",
+      title="E-commerce API",
       default_version='v1',
-      description="Blog Documentation Gabriel Django",
+      description="Gabriel's Documentation - Mini E-commerce Django",
       terms_of_service="",
       contact=openapi.Contact(email="diazhernandezgabriel2001@gmail.com"),
       license=openapi.License(name="BSD License"),
@@ -40,4 +40,5 @@ urlpatterns = [
     path('api/', include('users.api.router')),
     path('api/', include('products.api.router')),
     path('api/', include('carts.api.router')),
+    path('api/', include('checkouts.api.router')),
 ]
