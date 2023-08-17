@@ -50,7 +50,7 @@ class CheckoutViewById(APIView):
     def get(self, request, id):
         try:
             checkout = Checkout.objects.get(id=id)
-            serializer = CheckoutSerializer(checkout)
+            serializer = CheckoutSerializerSummary(checkout)
             return Response(status=status.HTTP_200_OK, data=serializer.data)
         except Exception as e:
             return Response(

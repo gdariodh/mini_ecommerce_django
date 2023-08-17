@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from checkouts.models import Checkout
 from users.api.serializers import UserSerializer
-from carts.api.serializers import CartSerializer
+from carts.api.serializers import CartSerializerSummary
 
 class CheckoutSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,8 +11,8 @@ class CheckoutSerializer(serializers.ModelSerializer):
 
 class CheckoutSerializerSummary(serializers.ModelSerializer):
 
-    cart = CartSerializer(many=True, read_only=True)
-    user = UserSerializer(read_only=True)
+    cart = CartSerializerSummary()
+    user = UserSerializer()
 
     class Meta:
         model = Checkout
