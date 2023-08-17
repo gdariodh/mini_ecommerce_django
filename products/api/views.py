@@ -19,19 +19,17 @@ class ProductView(APIView):
         return Response(data=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request):
-        products = Product.objects.all().order_by('-created_at')
+        products = Product.objects.all().order_by('-created_at').filter(published=True)
         serializer = ProductSerializer(products, many=True)
         return Response(status=status.HTTP_201_CREATED, data=serializer.data)
     
 
 # products/<int:id>
 class ProductViewById(APIView):
-        
-        permission_classes = [IsStaffOrReadOnly]
-    
+
         def get(self, request, id):
             try:
-                product = Product.objects.get(id=id)
+                product = Product.objects.filter(published=True).get(id=id)
             except Exception as e:
                 return Response(status=status.HTTP_400_BAD_REQUEST, data={
                     'message': 'Product not found'
@@ -73,7 +71,7 @@ class ProductViewByUser(APIView):
         
         def get(self, request, id):
             try:
-                products = Product.objects.filter(user_id=id).order_by('-created_at')
+                products = Product.objects.filter(published=True).filter(user_id=id).order_by('-created_at')
             except Exception as e:
                 return Response(status=status.HTTP_400_BAD_REQUEST, data={
                     'message': 'Products not found'
