@@ -40,7 +40,7 @@ class CheckoutView(APIView):
 
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        except Exception as e:a
+        except Exception as e:
             return Response(
                 status=status.HTTP_400_BAD_REQUEST,
                 data={"message": "There was a problem"},
