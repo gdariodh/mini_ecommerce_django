@@ -29,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['mini-ecommerce-django-gdariodh.up.railway.app']
 
+CSRF_TRUSTED_ORIGINS = ['https://mini-ecommerce-django-gdariodh.up.railway.app']
 
 # Application definition
 
