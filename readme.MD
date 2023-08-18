@@ -2,6 +2,6 @@
 
 ### PERSONAL PROJECT
 
--- The Api was developed using Python and Django Rest Framework --
+-- The API was developed using Python and Django Rest Framework --
 
-I developed the Mini E-commmerce API for practicing, which I'd learned about Python and Django.
+I developed the mini e-commerce API for practicing, which I'd learned about Python and Django.
