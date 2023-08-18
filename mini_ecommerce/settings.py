@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'mini_ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2-binary',
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': 'TehILkmvY8rnfoOcZSxK',
