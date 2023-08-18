@@ -27,9 +27,9 @@ SECRET_KEY = 'django-insecure-9d9eb4i6x_jdj__bhi8#imk2y0cj3khvqm%6hb0djuzd(u%bg_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mini-ecommerce-django-gdariodh.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1','mini-ecommerce-django-gdariodh.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://mini-ecommerce-django-gdariodh.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000','https://mini-ecommerce-django-gdariodh.up.railway.app']
 
 # Application definition
 
